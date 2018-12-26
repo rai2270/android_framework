@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.tr.myapplication.view.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_threadFragment"
+            app:destination="@id/threadFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_restFragment"
+            app:destination="@id/restFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.tr.myapplication.view.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.tr.myapplication.view.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/threadFragment"
+        android:name="com.example.tr.myapplication.view.ThreadFragment"
+        android:label="fragment_thread"
+        tools:layout="@layout/fragment_thread" />
+    <fragment
+        android:id="@+id/restFragment"
+        android:name="com.example.tr.myapplication.view.RestFragment"
+        android:label="fragment_rest"
+        tools:layout="@layout/fragment_rest" />
+</navigation>
