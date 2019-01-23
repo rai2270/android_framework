@@ -7,7 +7,5 @@ This is a fast handwriting design for the way events work in the code:
 
 ![alt text](https://github.com/rai2270/android_framework/blob/master/Flow.png)
 
-![alt text](https://github.com/rai2270/android_framework/blob/master/Structure_base.png)
-
 ![alt text](https://github.com/rai2270/android_framework/blob/master/Structure.png)
 
