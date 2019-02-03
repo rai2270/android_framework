@@ -53,8 +53,8 @@ public class RestFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
-        super.onDestroyView();
         BusUtils.unregisterBusIfRegistered(this);
+        super.onDestroyView();
     }
 
     @OnClick(R.id.button6)
