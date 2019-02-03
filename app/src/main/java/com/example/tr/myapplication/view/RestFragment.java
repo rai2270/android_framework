@@ -12,11 +12,11 @@ import android.view.ViewGroup;
 import com.example.tr.myapplication.MyApplication;
 import com.example.tr.myapplication.R;
 import com.example.tr.myapplication.domain.event.InfoJsonEvent;
-import com.example.tr.myapplication.domain.event.bus.MainThreadBus;
 import com.example.tr.myapplication.domain.job.network.GetPostsJob;
 import com.example.tr.myapplication.domain.job.queue.LocalJobQueue;
-import com.example.tr.myapplication.utility.BusUtils;
-import com.squareup.otto.Subscribe;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import javax.inject.Inject;
 
@@ -48,12 +48,12 @@ public class RestFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        BusUtils.registerBusIfNotRegistered(this);
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public void onDestroyView() {
-        BusUtils.unregisterBusIfRegistered(this);
+        EventBus.getDefault().unregister(this);
         super.onDestroyView();
     }
 

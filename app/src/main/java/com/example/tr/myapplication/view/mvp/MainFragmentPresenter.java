@@ -3,12 +3,13 @@ package com.example.tr.myapplication.view.mvp;
 import com.example.tr.myapplication.MyApplication;
 import com.example.tr.myapplication.domain.event.ReadyEvent;
 import com.example.tr.myapplication.domain.job.local.DoCardTransactionJob;
-import com.example.tr.myapplication.domain.job.network.GetPostsJob;
 import com.example.tr.myapplication.domain.job.queue.LocalJobQueue;
-import com.example.tr.myapplication.utility.BusUtils;
 import com.example.tr.myapplication.utility.LumberJack;
 import com.example.tr.myapplication.view.mvp.view.IMainFragmentView;
-import com.squareup.otto.Subscribe;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import javax.inject.Inject;
 
@@ -27,7 +28,7 @@ public class MainFragmentPresenter {
     }
 
     public void start() {
-        BusUtils.registerBusIfNotRegistered(this);
+        EventBus.getDefault().register(this);
     }
 
     public void resume() {
@@ -37,14 +38,14 @@ public class MainFragmentPresenter {
     }
 
     public void stop() {
-        BusUtils.unregisterBusIfRegistered(this);
+        EventBus.getDefault().unregister(this);
     }
 
     public void doPriQ() {
         _localJobQueue.addJobInBackground(new DoCardTransactionJob());
     }
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void receiveReadyEvent(ReadyEvent event) {
         LumberJack.logGeneric("MainFragmentPresenter: receiveReadyEvent");
         view.showResultsFromJob(event.getTime());

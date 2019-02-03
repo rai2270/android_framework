@@ -2,7 +2,6 @@ package com.example.tr.myapplication.domain.job.local;
 
 import android.os.Build;
 
-import com.example.tr.myapplication.domain.event.bus.MainThreadBus;
 import com.example.tr.myapplication.domain.job.BaseJob;
 
 import com.example.tr.myapplication.domain.event.ReadyEvent;
@@ -10,6 +9,7 @@ import com.example.tr.myapplication.utility.LumberJack;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -56,7 +56,7 @@ public class DoCardTransactionJob extends BaseJob {
         sendToFTP();
         time = System.currentTimeMillis();
 
-        MainThreadBus.getInstance().post(new ReadyEvent(time));
+        EventBus.getDefault().post(new ReadyEvent(time));
         LumberJack.logGeneric("DoCardTransactionJob 4");
 
     }

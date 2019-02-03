@@ -4,9 +4,10 @@ import com.example.tr.myapplication.MyApplication;
 import com.example.tr.myapplication.domain.event.ReadyEvent;
 import com.example.tr.myapplication.domain.job.local.DoCardTransactionJob;
 import com.example.tr.myapplication.domain.job.queue.LocalJobQueue;
-import com.example.tr.myapplication.utility.BusUtils;
 import com.example.tr.myapplication.view.mvp.view.IMainActivityView;
-import com.squareup.otto.Subscribe;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import javax.inject.Inject;
 
@@ -27,7 +28,7 @@ public class MainActivityPresenter {
     }
 
     public void start() {
-        BusUtils.registerBusIfNotRegistered(this);
+        EventBus.getDefault().register(this);
     }
 
     public void resume() {
@@ -37,7 +38,7 @@ public class MainActivityPresenter {
     }
 
     public void stop() {
-        BusUtils.unregisterBusIfRegistered(this);
+        EventBus.getDefault().unregister(this);
     }
 
     public void doPriQ() {
