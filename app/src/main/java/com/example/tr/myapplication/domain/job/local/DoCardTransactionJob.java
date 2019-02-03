@@ -58,7 +58,7 @@ public class DoCardTransactionJob extends BaseJob {
         time = System.currentTimeMillis();
 
         EventBus.getDefault().postSticky(new ReadyEvent(time));
-        EventBus.getDefault().postSticky(new MessageEvent("" + time));
+        EventBus.getDefault().post(new MessageEvent("" + time));
         LumberJack.logGeneric("DoCardTransactionJob 4");
 
     }
