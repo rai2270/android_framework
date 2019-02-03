@@ -1,5 +1,5 @@
 # android_framework
-Demo: Navigation arch comp , PriorityQ , Executer , Work Manager , Dagger 2 , EventBus , OkHttp , Retrofit
+Demo: Navigation arch comp , PriorityQ , Executer , Work Manager , Dagger 2 , Greenrobot EventBus , OkHttp , Retrofit
 
 Coding for every topic above is done in a simple way in order to help you kickstart any android project.
 
