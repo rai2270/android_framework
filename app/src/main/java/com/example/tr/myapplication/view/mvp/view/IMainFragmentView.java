@@ -1,5 +1,6 @@
 package com.example.tr.myapplication.view.mvp.view;
 
 public interface IMainFragmentView {
-    void showResultsFromJob(long time);
+    void showResultsFromJobSticky(long time);
+    void showResultsFromJob(String time);
 }

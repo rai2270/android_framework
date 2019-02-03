@@ -118,9 +118,15 @@ public class ThreadFragment extends Fragment implements IMainFragmentView {
     }
 
     @Override
-    public void showResultsFromJob(long time) {
-        LumberJack.logGeneric("ThreadFragment: showResultsFromJob");
+    public void showResultsFromJobSticky(long time) {
+        LumberJack.logGeneric("ThreadFragment: showResultsFromJobSticky");
         textViewResults.setText("" + time);
+    }
+
+    @Override
+    public void showResultsFromJob(String time) {
+        LumberJack.logGeneric("ThreadFragment: showResultsFromJob");
+        textViewResults.setText(time);
     }
 
 
