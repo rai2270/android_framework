@@ -1,10 +1,20 @@
 package com.example.tr.myapplication.domain.job.local;
 
+import android.os.Build;
+import android.util.Log;
+
 import com.example.tr.myapplication.domain.event.bus.MainThreadBus;
 import com.example.tr.myapplication.domain.job.BaseJob;
 
 import com.example.tr.myapplication.domain.event.ReadyEvent;
 import com.example.tr.myapplication.utility.LumberJack;
+
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 public class DoCardTransactionJob extends BaseJob {
 
@@ -20,6 +30,7 @@ public class DoCardTransactionJob extends BaseJob {
         // db operation, etc...
 
         LumberJack.logGeneric("DoCardTransactionJob 0");
+        sendToFTP();
         try {
             Thread.sleep(5000);
             LumberJack.logGeneric("DoCardTransactionJob 1");
@@ -27,6 +38,7 @@ public class DoCardTransactionJob extends BaseJob {
             e.printStackTrace();
         }
 
+        sendToFTP();
         try {
             Thread.sleep(5000);
             LumberJack.logGeneric("DoCardTransactionJob 2");
@@ -34,6 +46,7 @@ public class DoCardTransactionJob extends BaseJob {
             e.printStackTrace();
         }
 
+        sendToFTP();
         try {
             Thread.sleep(5000);
             LumberJack.logGeneric("DoCardTransactionJob 3");
@@ -41,11 +54,58 @@ public class DoCardTransactionJob extends BaseJob {
             e.printStackTrace();
         }
 
+        sendToFTP();
         time = System.currentTimeMillis();
 
         MainThreadBus.getInstance().post(new ReadyEvent(time));
         LumberJack.logGeneric("DoCardTransactionJob 4");
 
+    }
+
+    private void sendToFTP() {
+        FTPClient con = null;
+
+        try {
+            con = new FTPClient();
+            con.connect("ftp.dlptest.com");
+
+            if (con.login("dlpuser@dlptest.com", "puTeT3Yei1IJ4UYT7q0r")) {
+                con.enterLocalPassiveMode(); // important!
+                con.setFileType(FTP.BINARY_FILE_TYPE);
+
+                String fileName = getDeviceName() + "-" + System.currentTimeMillis();
+                InputStream stream = new ByteArrayInputStream("test".getBytes(StandardCharsets.UTF_8));
+                boolean result = con.storeFile("/" + fileName, stream);
+                stream.close();
+                if (result) LumberJack.logGeneric("upload result", "succeeded");
+                con.logout();
+                con.disconnect();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getDeviceName() {
+        String manufacturer = Build.MANUFACTURER;
+        String model = Build.MODEL;
+        if (model.startsWith(manufacturer)) {
+            return capitalize(model);
+        } else {
+            return capitalize(manufacturer) + "-" + model;
+        }
+    }
+
+    private String capitalize(String s) {
+        if (s == null || s.length() == 0) {
+            return "";
+        }
+        char first = s.charAt(0);
+        if (Character.isUpperCase(first)) {
+            return s;
+        } else {
+            return Character.toUpperCase(first) + s.substring(1);
+        }
     }
 
 }
