@@ -6,6 +6,7 @@ import com.example.tr.myapplication.domain.job.local.DoCardTransactionJob;
 import com.example.tr.myapplication.domain.job.network.GetPostsJob;
 import com.example.tr.myapplication.domain.job.queue.LocalJobQueue;
 import com.example.tr.myapplication.utility.BusUtils;
+import com.example.tr.myapplication.utility.LumberJack;
 import com.example.tr.myapplication.view.mvp.view.IMainFragmentView;
 import com.squareup.otto.Subscribe;
 
@@ -45,6 +46,7 @@ public class MainFragmentPresenter {
 
     @Subscribe
     public void receiveReadyEvent(ReadyEvent event) {
+        LumberJack.logGeneric("MainFragmentPresenter: receiveReadyEvent");
         view.showResultsFromJob(event.getTime());
     }
 }

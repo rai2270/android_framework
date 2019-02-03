@@ -7,10 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tr.myapplication.MyApplication;
 import com.example.tr.myapplication.R;
 import com.example.tr.myapplication.domain.work.MyWorker;
+import com.example.tr.myapplication.utility.LumberJack;
 import com.example.tr.myapplication.view.mvp.MainFragmentPresenter;
 import com.example.tr.myapplication.view.mvp.view.IMainFragmentView;
 
@@ -70,6 +72,7 @@ public class ThreadFragment extends Fragment implements IMainFragmentView {
 
     @OnClick(R.id.button)
     void submit() {
+        Toast.makeText(getActivity(), "move to background - check logcat", Toast.LENGTH_SHORT).show();
         presenter.doPriQ();
     }
 
@@ -116,6 +119,7 @@ public class ThreadFragment extends Fragment implements IMainFragmentView {
 
     @Override
     public void showResultsFromJob(long time) {
+        LumberJack.logGeneric("ThreadFragment: showResultsFromJob");
         textViewResults.setText("" + time);
     }
 

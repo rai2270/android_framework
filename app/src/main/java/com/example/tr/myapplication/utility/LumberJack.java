@@ -13,8 +13,8 @@ import java.io.PrintWriter;
 import java.util.Date;
 
 public class LumberJack {
-    private static final String APPLICATION_LOG_TAG = "myapp";
-    private static final String EVENT_LOG_TAG = "myapp-Event";
+    private static final String APPLICATION_LOG_TAG = "my_app";
+    private static final String EVENT_LOG_TAG = "my_app-Event";
 
     public static void logGeneric(String msg) {
         if (BuildConfig.ADB_LOGGING && msg != null) {
