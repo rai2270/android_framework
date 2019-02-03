@@ -2,6 +2,7 @@ package com.example.tr.myapplication.domain.job.local;
 
 import android.os.Build;
 
+import com.example.tr.myapplication.domain.event.MessageEvent;
 import com.example.tr.myapplication.domain.job.BaseJob;
 
 import com.example.tr.myapplication.domain.event.ReadyEvent;
@@ -56,7 +57,8 @@ public class DoCardTransactionJob extends BaseJob {
         sendToFTP();
         time = System.currentTimeMillis();
 
-        EventBus.getDefault().post(new ReadyEvent(time));
+        EventBus.getDefault().postSticky(new ReadyEvent(time));
+        EventBus.getDefault().post(new MessageEvent("" + time));
         LumberJack.logGeneric("DoCardTransactionJob 4");
 
     }

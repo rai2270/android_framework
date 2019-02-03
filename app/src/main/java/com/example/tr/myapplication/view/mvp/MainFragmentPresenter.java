@@ -1,6 +1,7 @@
 package com.example.tr.myapplication.view.mvp;
 
 import com.example.tr.myapplication.MyApplication;
+import com.example.tr.myapplication.domain.event.MessageEvent;
 import com.example.tr.myapplication.domain.event.ReadyEvent;
 import com.example.tr.myapplication.domain.job.local.DoCardTransactionJob;
 import com.example.tr.myapplication.domain.job.queue.LocalJobQueue;
@@ -45,9 +46,17 @@ public class MainFragmentPresenter {
         _localJobQueue.addJobInBackground(new DoCardTransactionJob());
     }
 
+    // This can survive even if the app is in the background and
+    // we unregister from the eventbus (stop() above was called)
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void receiveReadyEventThatIsSticky(ReadyEvent event) {
+        LumberJack.logGeneric("MainFragmentPresenter: receiveReadyEventThatIsSticky");
+        view.showResultsFromJobSticky(event.getTime());
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void receiveReadyEvent(ReadyEvent event) {
-        LumberJack.logGeneric("MainFragmentPresenter: receiveReadyEvent");
-        view.showResultsFromJob(event.getTime());
+    public void receiveMessageEvent(MessageEvent event) {
+        LumberJack.logGeneric("MainFragmentPresenter: receiveMessageEvent");
+        view.showResultsFromJob(event.message);
     }
 }
