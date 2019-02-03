@@ -54,14 +54,14 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
 
     @Override
     public void onPause() {
-        super.onPause();
         presenter.pause();
+        super.onPause();
     }
 
     @Override
     protected void onStop() {
-        super.onStop();
         presenter.stop();
+        super.onStop();
     }
 
     @Override
