@@ -1,7 +1,6 @@
 package com.example.tr.myapplication.domain.job.local;
 
 import android.os.Build;
-import android.util.Log;
 
 import com.example.tr.myapplication.domain.event.bus.MainThreadBus;
 import com.example.tr.myapplication.domain.job.BaseJob;
@@ -63,8 +62,9 @@ public class DoCardTransactionJob extends BaseJob {
     }
 
     private void sendToFTP() {
-        FTPClient con = null;
+        // https://dlptest.com/ftp-test/
 
+        FTPClient con = null;
         try {
             con = new FTPClient();
             con.connect("ftp.dlptest.com");

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tr.myapplication.MyApplication;
 import com.example.tr.myapplication.R;
@@ -71,6 +72,7 @@ public class ThreadFragment extends Fragment implements IMainFragmentView {
 
     @OnClick(R.id.button)
     void submit() {
+        Toast.makeText(getActivity(), "move to background - check logcat", Toast.LENGTH_SHORT).show();
         presenter.doPriQ();
     }
 
