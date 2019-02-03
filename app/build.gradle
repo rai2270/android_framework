@@ -26,7 +26,6 @@ android {
 }
 
 def butterknifeVersion = '9.0.0-rc3'
-def ottoVersion = '1.3.8'
 def jobQueueVersion = '2.0.1'
 def daggerVersion = '2.20'
 def nav_version = "1.0.0-alpha09"
@@ -34,7 +33,7 @@ def nav_version = "1.0.0-alpha09"
 dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
 
-    implementation "com.squareup:otto:$ottoVersion"
+    implementation 'org.greenrobot:eventbus:3.1.1'
 
     implementation 'net.zetetic:android-database-sqlcipher:4.0.1@aar'
 

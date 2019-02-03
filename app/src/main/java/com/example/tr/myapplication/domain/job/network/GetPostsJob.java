@@ -2,11 +2,11 @@ package com.example.tr.myapplication.domain.job.network;
 
 import com.example.tr.myapplication.MyApplication;
 import com.example.tr.myapplication.domain.event.InfoJsonEvent;
-import com.example.tr.myapplication.domain.event.ReadyEvent;
-import com.example.tr.myapplication.domain.event.bus.MainThreadBus;
 import com.example.tr.myapplication.domain.job.BaseJob;
 import com.example.tr.myapplication.model.data.serverjson.InfoJson;
 import com.example.tr.myapplication.network.retrofit.RestFetchService;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class GetPostsJob extends BaseJob {
 
             // do something with the data...
 
-            MainThreadBus.getInstance().post(new InfoJsonEvent(data));
+            EventBus.getDefault().post(new InfoJsonEvent(data));
         } else {
 
         }

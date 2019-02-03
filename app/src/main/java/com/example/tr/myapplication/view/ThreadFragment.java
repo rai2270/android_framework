@@ -66,8 +66,8 @@ public class ThreadFragment extends Fragment implements IMainFragmentView {
 
     @Override
     public void onPause() {
-        super.onPause();
         presenter.stop();
+        super.onPause();
     }
 
     @OnClick(R.id.button)
