@@ -43,7 +43,7 @@ public class MainFragmentPresenter {
     }
 
     public void doPriQ() {
-        _localJobQueue.addJobInBackground(new DoCardTransactionJob());
+        _localJobQueue.addJobInBackground(new DoCardTransactionJob(5));
     }
 
     // This can survive even if the app is in the background and

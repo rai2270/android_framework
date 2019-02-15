@@ -42,7 +42,7 @@ public class MainActivityPresenter {
     }
 
     public void doPriQ() {
-        _localJobQueue.addJobInBackground(new DoCardTransactionJob());
+        _localJobQueue.addJobInBackground(new DoCardTransactionJob(0));
     }
 
     @Subscribe

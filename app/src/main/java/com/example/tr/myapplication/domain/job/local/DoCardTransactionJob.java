@@ -2,6 +2,7 @@ package com.example.tr.myapplication.domain.job.local;
 
 import android.os.Build;
 
+import com.birbit.android.jobqueue.Params;
 import com.example.tr.myapplication.domain.event.MessageEvent;
 import com.example.tr.myapplication.domain.job.BaseJob;
 
@@ -19,9 +20,14 @@ import java.nio.charset.StandardCharsets;
 public class DoCardTransactionJob extends BaseJob {
 
     private long time;
+    private int counter;
 
-    public DoCardTransactionJob() {
-        super();
+    public DoCardTransactionJob(int counter) {
+        // Set this job to be persistent:
+        // Even if app is closed, job will run again when reopen.
+        super(new Params(1).setPersistent(true));
+        // members also saved in case app is closed and rerun (on persistent)
+        this.counter = counter;
     }
 
     @Override
@@ -29,11 +35,11 @@ public class DoCardTransactionJob extends BaseJob {
 
         // db operation, etc...
 
-        LumberJack.logGeneric("DoCardTransactionJob 0");
+        LumberJack.logGeneric("DoCardTransactionJob " + counter++);
         sendToFTP();
         try {
             Thread.sleep(5000);
-            LumberJack.logGeneric("DoCardTransactionJob 1");
+            LumberJack.logGeneric("DoCardTransactionJob " + counter++);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -41,7 +47,7 @@ public class DoCardTransactionJob extends BaseJob {
         sendToFTP();
         try {
             Thread.sleep(5000);
-            LumberJack.logGeneric("DoCardTransactionJob 2");
+            LumberJack.logGeneric("DoCardTransactionJob " + counter++);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -49,7 +55,7 @@ public class DoCardTransactionJob extends BaseJob {
         sendToFTP();
         try {
             Thread.sleep(5000);
-            LumberJack.logGeneric("DoCardTransactionJob 3");
+            LumberJack.logGeneric("DoCardTransactionJob " + counter++);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -59,7 +65,7 @@ public class DoCardTransactionJob extends BaseJob {
 
         EventBus.getDefault().postSticky(new ReadyEvent(time));
         EventBus.getDefault().post(new MessageEvent("" + time));
-        LumberJack.logGeneric("DoCardTransactionJob 4");
+        LumberJack.logGeneric("DoCardTransactionJob " + counter++);
 
     }
 
