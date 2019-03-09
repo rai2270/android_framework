@@ -8,8 +8,8 @@ public class LocalJobQueue extends JobManager {
     public LocalJobQueue(){
         super(new Configuration.Builder(MyApplication.getInstance().getApplicationContext())
                 .id("localQueue")
-                .minConsumerCount(1)
-                .maxConsumerCount(1)
+                .minConsumerCount(3)
+                .maxConsumerCount(5)
                 .build());
     }
 }

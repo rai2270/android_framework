@@ -8,27 +8,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.example.tr.myapplication.MyApplication;
 import com.example.tr.myapplication.R;
-import com.example.tr.myapplication.domain.work.MyWorker;
-import com.example.tr.myapplication.view.mvp.MainFragmentPresenter;
-import com.example.tr.myapplication.view.mvp.view.IMainFragmentView;
-
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
-import javax.inject.Inject;
 
 import androidx.navigation.Navigation;
-import androidx.work.Constraints;
-import androidx.work.Data;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkManager;
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 
 /**

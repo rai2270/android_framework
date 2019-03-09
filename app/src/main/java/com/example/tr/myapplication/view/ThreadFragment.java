@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.example.tr.myapplication.MyApplication;
 import com.example.tr.myapplication.R;
-import com.example.tr.myapplication.domain.work.MyWorker;
+import com.example.tr.myapplication.domain.workmanager.MyWorker;
 import com.example.tr.myapplication.utility.LumberJack;
 import com.example.tr.myapplication.view.mvp.MainFragmentPresenter;
 import com.example.tr.myapplication.view.mvp.view.IMainFragmentView;

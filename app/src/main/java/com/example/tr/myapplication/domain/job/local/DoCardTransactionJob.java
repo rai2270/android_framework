@@ -19,8 +19,11 @@ import java.nio.charset.StandardCharsets;
 
 public class DoCardTransactionJob extends BaseJob {
 
+    private int hash;
     private long time;
     private int counter;
+
+    static final String BODY_KEY_MEDIA_DIGEST = "media_digest";
 
     public DoCardTransactionJob(int counter) {
         // Set this job to be persistent:
@@ -28,15 +31,26 @@ public class DoCardTransactionJob extends BaseJob {
         super(new Params(1).setPersistent(true));
         // members also saved in case app is closed and rerun (on persistent)
         this.counter = counter;
+        time = System.currentTimeMillis();
+        hash = this.hashCode();
+        LumberJack.logGeneric("DoCardTransactionJob hash: " + hash);
+        LumberJack.logGeneric("DoCardTransactionJob hash: " + hash + " + time: " + time);
+        LumberJack.logGeneric("DoCardTransactionJob counter: " + counter);
     }
 
     @Override
     public void onRun() throws Throwable {
 
+        LumberJack.logGeneric("DoCardTransactionJob onRun() hash: " + hash);
+        LumberJack.logGeneric("DoCardTransactionJob onRun() hash: " + hash + " + time: " + time);
+        LumberJack.logGeneric("DoCardTransactionJob onRun() counter: " + counter);
+
+        LumberJack.logGeneric("DoCardTransactionJob BODY_KEY_MEDIA_DIGEST: " + BODY_KEY_MEDIA_DIGEST);
+
         // db operation, etc...
 
         LumberJack.logGeneric("DoCardTransactionJob " + counter++);
-        sendToFTP();
+        //sendToFTP();
         try {
             Thread.sleep(5000);
             LumberJack.logGeneric("DoCardTransactionJob " + counter++);
@@ -44,7 +58,7 @@ public class DoCardTransactionJob extends BaseJob {
             e.printStackTrace();
         }
 
-        sendToFTP();
+        //sendToFTP();
         try {
             Thread.sleep(5000);
             LumberJack.logGeneric("DoCardTransactionJob " + counter++);
@@ -52,7 +66,7 @@ public class DoCardTransactionJob extends BaseJob {
             e.printStackTrace();
         }
 
-        sendToFTP();
+        //sendToFTP();
         try {
             Thread.sleep(5000);
             LumberJack.logGeneric("DoCardTransactionJob " + counter++);
@@ -60,8 +74,8 @@ public class DoCardTransactionJob extends BaseJob {
             e.printStackTrace();
         }
 
-        sendToFTP();
-        time = System.currentTimeMillis();
+        //sendToFTP();
+
 
         EventBus.getDefault().postSticky(new ReadyEvent(time));
         EventBus.getDefault().post(new MessageEvent("" + time));
