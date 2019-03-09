@@ -28,7 +28,7 @@ android {
 def butterknifeVersion = '9.0.0-rc3'
 def jobQueueVersion = '2.0.1'
 def daggerVersion = '2.20'
-def nav_version = "1.0.0-alpha09"
+def nav_version = "1.0.0-rc02"
 
 dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
@@ -67,7 +67,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation "android.arch.work:work-runtime:1.0.0-beta01"
+    implementation "android.arch.work:work-runtime:1.0.0"
 
     implementation "android.arch.navigation:navigation-fragment:$nav_version" // use -ktx for Kotlin
     implementation "android.arch.navigation:navigation-ui:$nav_version" // use -ktx for Kotlin
