@@ -23,6 +23,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    ndkVersion = project.ndk_version
 }
 
 def butterknifeVersion = '9.0.0-rc3'
